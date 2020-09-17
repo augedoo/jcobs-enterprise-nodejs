@@ -1,27 +1,30 @@
 {
   "name": "jcobs-enterprise-nodejs",
   "version": "1.0.0",
-  "description": "E-Commerce Shshop application",
-  "main": "index.js",
+  "description": "E-Commerce shop application",
+  "main": "server.js",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "concurrently": "^5.3.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "helmet": "^4.1.1",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "node-sass-chokidar": "^1.5.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
   },
   "scripts": {
-    "start": "nodemon server.js",
-    "start-server": "node server.js"
+    "start": "node server.js",
+    "dev": "concurrently \"nodemon server.js\" \"npm run sass\"",
+    "sass": "node-sass-chokidar ./scss/index.scss -o ./public/css/ --watch --recursive --use-polling --polling-interval 1000"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/augedoo/jcobs-enterprise-nodejs.git"
   },
-  "author": "",
+  "author": "Augustine Amoh Nkansah",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/augedoo/jcobs-enterprise-nodejs/issues"
