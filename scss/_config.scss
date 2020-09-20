@@ -1,3 +1,79 @@
 // Typography
+@import url('../fonts/apercu/stylesheet.css');
+@import url('../fonts/helvetica-neue/stylesheet.css');
+@import url('https://fonts.googleapis.com/css?family=Gelasio:400,500,600,700&display=swap');
+
+$font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+  Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+$font-secondary: Verdana, Geneva, Tahoma, sans-serif;
+$font-special: 'Limelight', cursive;
+
+// body {
+//   font-family: Verdana, Geneva, Tahoma, sans-serif;
+// }
 
 // Colors
+$primary: #218896;
+// $primary: #f48625;
+$secondary: #1a1919;
+$medium: #edece9;
+$light: #efefef;
+$off-white: #f5f5f5;
+$white: #ffffff;
+$dark: #2c2c2c;
+$dark-lite: #6f7678;
+$black: #000000;
+
+// Utils
+$max-width: 1200px;
+$sm-bp: 576px;
+$md-bp: 768px;
+$lg-bp: 992px;
+$xl-bp: 1200px;
+
+// Functions
+@function setTextColor($background-color) {
+  @if (lightness($background-color) > 50) {
+    @return $dark;
+  } @else {
+    @return $white;
+  }
+}
+
+// Animations - Keyframes
+@keyframes arrow-direction-right {
+  to {
+    transform: translateX(10px);
+  }
+}
+
+@keyframes arrow-direction-left {
+  to {
+    transform: translateX(-10px);
+  }
+}
+
+// Mixins
+@mixin sm-bp {
+  @media screen and (min-width: #{$sm-bp}) {
+    @content;
+  }
+}
+
+@mixin md-bp {
+  @media screen and (min-width: #{$md-bp}) {
+    @content;
+  }
+}
+
+@mixin lg-bp {
+  @media screen and (min-width: #{$lg-bp}) {
+    @content;
+  }
+}
+
+@mixin xl-bp {
+  @media screen and (min-width: #{$xl-bp}) {
+    @content;
+  }
+}

@@ -1,0 +1,199 @@
+/* Utilities */
+.container {
+  width: 90%;
+  max-width: $max-width;
+  margin: 0 auto;
+}
+
+.current {
+  color: $primary !important;
+  fill: $primary !important;
+
+
+}
+
+.section-title {
+  text-align: center;
+  font-weight: bold;
+}
+
+.lead {
+  font-size: 1.2rem;
+  color: $dark;
+  margin-bottom: 1rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-primary {
+  color: $primary;
+}
+
+.l-heading {
+  font-size: 4rem;
+}
+
+.m-heading {
+  font-size: 3rem;
+}
+
+.s-heading {
+  font-size: 2rem;
+}
+
+.btn {
+  padding: 0.5rem 1.5rem;
+  font-size: 0.9rem;
+  font-family: $font-primary;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  display: inline-block;
+  transition: 0.2s;
+  transition-property:  none;
+
+  &-block {
+    width: 100%;
+    display: block;
+  }
+
+  &-dark {
+    background: $dark;
+    color: $light;
+  }
+
+  &-light {
+    background: $light;
+    color: $dark;
+  }
+
+  &-primary {
+    background: $primary;
+    color: setTextColor($primary);
+  }
+
+  &-secondary {
+    background: $secondary;
+    color: setTextColor($secondary);
+  }
+
+  &:hover {
+    background: lighten($color: $primary, $amount: 5);
+  }
+}
+
+.bg {
+  &-dark {
+    background: $dark;
+    color: $light;
+  }
+
+  &-light {
+    background: $light;
+    color: $dark;
+  }
+
+  &-primary {
+    background: $primary;
+    color: $light;
+  }
+}
+
+.py {
+  &-1 {
+    padding: 1rem 0rem;
+  }
+  &-2 {
+    padding: 2rem 0rem;
+  }
+  &-3 {
+    padding: 3rem 0rem;
+  }
+  &-4 {
+    padding: 4rem 0rem;
+  }
+}
+
+.p {
+  &-1 {
+    padding: 1rem;
+  }
+  &-2 {
+    padding: 2rem;
+  }
+  &-3 {
+    padding: 3rem;
+  }
+  &-4 {
+    padding: 4rem;
+  }
+}
+
+.my {
+  &-1 {
+    padding: 1rem 0rem;
+  }
+  &-2 {
+    padding: 2rem 0rem;
+  }
+  &-3 {
+    padding: 3rem 0rem;
+  }
+  &-4 {
+    padding: 4rem 0rem;
+  }
+}
+
+.m {
+  &-1 {
+    padding: 1rem;
+  }
+  &-2 {
+    padding: 2rem;
+  }
+  &-3 {
+    padding: 3rem;
+  }
+  &-4 {
+    padding: 4rem;
+  }
+}
+
+.input-field {
+  border: solid 1px $primary;
+  padding: 0.75rem 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 400;
+  transition: 0.5s;
+  border-radius: 3px;
+
+  &:hover,
+  &:focus,
+  &:active {
+    border: solid 1px $primary;
+    outline: none;
+  }
+}
+
+.bg {
+  &-light {
+    background: $light;
+    color: setTextColor($light);
+  }
+  &-medium {
+    background: $medium;
+    color: setTextColor($medium);
+  }
+  &-light {
+    background: $dark;
+    color: setTextColor($dark);
+  }
+  &-dark-lite {
+    background: $dark-lite;
+    color: setTextColor($dark-lite);
+  }
+}

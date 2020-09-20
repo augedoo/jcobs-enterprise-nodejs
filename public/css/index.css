@@ -1,2 +1,333 @@
+@import url("../fonts/apercu/stylesheet.css");
+@import url("../fonts/helvetica-neue/stylesheet.css");
+@import url("https://fonts.googleapis.com/css?family=Gelasio:400,500,600,700&display=swap");
+@keyframes arrow-direction-right {
+  to {
+    transform: translateX(10px); } }
+
+@keyframes arrow-direction-left {
+  to {
+    transform: translateX(-10px); } }
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box; }
+
 body {
-  background: red; }
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  line-height: 1.5;
+  color: #2c2c2c;
+  background-color: #efefef;
+  letter-spacing: 1.05px; }
+
+h1,
+h2,
+h3,
+h3,
+h4 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem; }
+
+ul {
+  list-style: none; }
+
+img {
+  width: 100%; }
+
+a {
+  text-decoration: none;
+  color: #2c2c2c;
+  display: inline-block;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif; }
+
+/* Utilities */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto; }
+
+.current {
+  color: #218896 !important;
+  fill: #218896 !important; }
+
+.section-title {
+  text-align: center;
+  font-weight: bold; }
+
+.lead {
+  font-size: 1.2rem;
+  color: #2c2c2c;
+  margin-bottom: 1rem; }
+
+.text-center {
+  text-align: center; }
+
+.text-primary {
+  color: #218896; }
+
+.l-heading {
+  font-size: 4rem; }
+
+.m-heading {
+  font-size: 3rem; }
+
+.s-heading {
+  font-size: 2rem; }
+
+.btn {
+  padding: 0.5rem 1.5rem;
+  font-size: 0.9rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  display: inline-block;
+  transition: 0.2s;
+  transition-property: none; }
+  .btn-block {
+    width: 100%;
+    display: block; }
+  .btn-dark {
+    background: #2c2c2c;
+    color: #efefef; }
+  .btn-light {
+    background: #efefef;
+    color: #2c2c2c; }
+  .btn-primary {
+    background: #218896;
+    color: #ffffff; }
+  .btn-secondary {
+    background: #1a1919;
+    color: #ffffff; }
+  .btn:hover {
+    background: #269bab; }
+
+.bg-dark {
+  background: #2c2c2c;
+  color: #efefef; }
+
+.bg-light {
+  background: #efefef;
+  color: #2c2c2c; }
+
+.bg-primary {
+  background: #218896;
+  color: #efefef; }
+
+.py-1 {
+  padding: 1rem 0rem; }
+
+.py-2 {
+  padding: 2rem 0rem; }
+
+.py-3 {
+  padding: 3rem 0rem; }
+
+.py-4 {
+  padding: 4rem 0rem; }
+
+.p-1 {
+  padding: 1rem; }
+
+.p-2 {
+  padding: 2rem; }
+
+.p-3 {
+  padding: 3rem; }
+
+.p-4 {
+  padding: 4rem; }
+
+.my-1 {
+  padding: 1rem 0rem; }
+
+.my-2 {
+  padding: 2rem 0rem; }
+
+.my-3 {
+  padding: 3rem 0rem; }
+
+.my-4 {
+  padding: 4rem 0rem; }
+
+.m-1 {
+  padding: 1rem; }
+
+.m-2 {
+  padding: 2rem; }
+
+.m-3 {
+  padding: 3rem; }
+
+.m-4 {
+  padding: 4rem; }
+
+.input-field {
+  border: solid 1px #218896;
+  padding: 0.75rem 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 400;
+  transition: 0.5s;
+  border-radius: 3px; }
+  .input-field:hover, .input-field:focus, .input-field:active {
+    border: solid 1px #218896;
+    outline: none; }
+
+.bg-light {
+  background: #efefef;
+  color: #2c2c2c; }
+
+.bg-medium {
+  background: #edece9;
+  color: #2c2c2c; }
+
+.bg-light {
+  background: #2c2c2c;
+  color: #ffffff; }
+
+.bg-dark-lite {
+  background: #6f7678;
+  color: #ffffff; }
+
+#header-inner {
+  background: #fff; }
+
+#header-main, #header-inner {
+  background: #fff;
+  padding: 0.5rem 0rem;
+  position: sticky;
+  top: 0;
+  left: 0px;
+  z-index: 99;
+  border-bottom: 1px solid #edece9; }
+  #header-main #navbar .container, #header-inner #navbar .container {
+    display: grid;
+    grid-template-columns: auto 2fr auto;
+    align-items: center;
+    justify-content: space-between; }
+    #header-main #navbar .container .logo, #header-inner #navbar .container .logo {
+      margin-right: 2rem; }
+      #header-main #navbar .container .logo h1, #header-inner #navbar .container .logo h1 {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: #6f7678;
+        font-weight: 900;
+        font-size: 1.5rem;
+        padding-top: 10px;
+        white-space: nowrap; }
+        #header-main #navbar .container .logo h1 small, #header-inner #navbar .container .logo h1 small {
+          color: #218896; }
+    #header-main #navbar .container .search-form, #header-inner #navbar .container .search-form {
+      margin: 0 2rem;
+      display: flex; }
+      #header-main #navbar .container .search-form input, #header-inner #navbar .container .search-form input {
+        flex: auto;
+        padding: 0.75rem 1rem;
+        border-radius: 5px;
+        border: solid #6f7678 2px;
+        font-size: 0.9rem; }
+        #header-main #navbar .container .search-form input::placeholder, #header-inner #navbar .container .search-form input::placeholder {
+          letter-spacing: 1.2px;
+          color: #464646;
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+          font-weight: 600; }
+      #header-main #navbar .container .search-form button, #header-inner #navbar .container .search-form button {
+        margin-left: 1rem;
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.09), -5px 5px rgba(0, 0, 0, 0.03); }
+    #header-main #navbar .container ul.options, #header-inner #navbar .container ul.options {
+      display: flex;
+      justify-content: flex-end; }
+      #header-main #navbar .container ul.options li, #header-inner #navbar .container ul.options li {
+        padding: 0.5rem 1rem;
+        color: #2c2c2c;
+        font-weight: 600;
+        position: relative;
+        display: flex;
+        align-items: center; }
+        #header-main #navbar .container ul.options li a, #header-inner #navbar .container ul.options li a {
+          transition: 0.2s;
+          transition-property: color, fill; }
+          #header-main #navbar .container ul.options li a:hover, #header-inner #navbar .container ul.options li a:hover {
+            color: #218896;
+            fill: #218896; }
+          #header-main #navbar .container ul.options li a.cart-btn, #header-inner #navbar .container ul.options li a.cart-btn {
+            display: flex;
+            align-items: center; }
+            #header-main #navbar .container ul.options li a.cart-btn svg, #header-inner #navbar .container ul.options li a.cart-btn svg {
+              transition: color;
+              margin-right: 0.5rem;
+              fill: inherit; }
+        #header-main #navbar .container ul.options li svg, #header-inner #navbar .container ul.options li svg {
+          transition: transform 0.25s; }
+        #header-main #navbar .container ul.options li ul, #header-inner #navbar .container ul.options li ul {
+          display: none; }
+        #header-main #navbar .container ul.options li:hover, #header-inner #navbar .container ul.options li:hover {
+          color: #218896; }
+          #header-main #navbar .container ul.options li:hover svg.feather-chevron-down, #header-inner #navbar .container ul.options li:hover svg.feather-chevron-down {
+            transform: rotate(180deg); }
+          #header-main #navbar .container ul.options li:hover ul, #header-inner #navbar .container ul.options li:hover ul {
+            display: block;
+            position: absolute;
+            background: #ffffff;
+            left: 0;
+            top: 2.5rem;
+            width: 200px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.05), -5px -5px 5px rgba(0, 0, 0, 0.05);
+            overflow: hidden; }
+            #header-main #navbar .container ul.options li:hover ul li, #header-inner #navbar .container ul.options li:hover ul li {
+              font-weight: 400;
+              font-size: 0.8rem;
+              padding: 0.75rem 1rem; }
+              #header-main #navbar .container ul.options li:hover ul li:hover, #header-inner #navbar .container ul.options li:hover ul li:hover {
+                background: #f5f5f5;
+                font-weight: 600;
+                color: #000000; }
+            #header-main #navbar .container ul.options li:hover ul a:hover, #header-inner #navbar .container ul.options li:hover ul a:hover {
+              font-weight: 600;
+              color: #000000; }
+          #header-main #navbar .container ul.options li:hover .logout, #header-inner #navbar .container ul.options li:hover .logout {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-top: 1px solid #efefef;
+            background: #f9f9f9; }
+            #header-main #navbar .container ul.options li:hover .logout a, #header-inner #navbar .container ul.options li:hover .logout a {
+              color: #218896;
+              text-transform: uppercase;
+              padding: 0.5rem 0.75rem;
+              border-radius: 5px;
+              background: none;
+              transition: background 0.35s; }
+              #header-main #navbar .container ul.options li:hover .logout a:hover, #header-inner #navbar .container ul.options li:hover .logout a:hover {
+                color: #218896;
+                background: rgba(33, 136, 150, 0.1); }
+
+#categories-header {
+  background: #fafafa;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.03); }
+  #categories-header .container {
+    display: flex;
+    padding: 0.5rem 0; }
+  #categories-header ul {
+    display: flex;
+    align-items: center; }
+    #categories-header ul li a {
+      display: flex;
+      align-items: center;
+      margin-right: 2rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #6f7678;
+      transition: color 0.35s; }
+      #categories-header ul li a svg {
+        width: 20px;
+        max-height: 24px;
+        margin-right: 0.5rem; }
+      #categories-header ul li a:hover {
+        color: #218896;
+        cursor: pointer;
+        fill: #218896; }

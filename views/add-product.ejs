@@ -1,0 +1,39 @@
+<%- include( 'includes/head') %> 
+  <!-- Todo: Imports -->
+</head>
+<body>
+  <%- include( 'includes/main-header') %> 
+  <%# include( 'includes/categories-header') %> 
+
+  <main>
+    <div class="container">
+      
+      <form method="POST" action="/admin/add-product">
+        <div class="form-field">
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name">
+        </div>
+        <div class="form-field">
+          <label for="price">Price</label>
+          <input type="number" name="price" id="price">
+        </div>
+        <div class="form-field">
+          <label for="imageUrl">ImageUrl</label>
+          <input type="text" name="imageUrl" id="imageUrl">
+        </div>
+        <div class="form-field">
+          <label for="category">Category</label>
+          <select id="category">
+            <option value="shoe">Shoe</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="description">Description</label>
+          <textarea name="description" id="description"></textarea>
+        </div>
+      </form>
+    </div>
+  </main>
+  
+<%- include( 'includes/end') %> 
+
