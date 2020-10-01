@@ -1,0 +1,82 @@
+<%- include( '../includes/head') %> 
+  <!-- Todo: Imports -->
+</head>
+<body>
+  <%- include( '../includes/main-header') %>  
+
+  <main id="cart">
+    <div class="container">
+      <h1 class="lead">Cart (<span><%= productsCount %> items </span>)</h1>
+
+      <% if (products.length > 0) { %>
+        <table >
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Quantity</th>
+              <th>Unit Price</th>
+              <th>SubTotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% products.forEach(product => { %> 
+              <tr class="product">
+                <td class="product__info">
+                  <div class="product__image">
+                    <img src="<%= product.imageUrl %>" alt="<%= product.title %> ">
+                  </div>
+                  <div>
+                    <h2><%= product.title %></h2>
+                    <form method="POST" action="/delete-cart-item"      class="product__action">
+                      <button type="submit">
+                        <svg 
+                          class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span>Remove</span>
+                      </button>
+                      <input type="hidden" name="productId" value="<%= product.id %>">
+                    </form>
+                  </div>
+                </td>
+                <td class="product__quantity">
+                  <span><%= product.cartItem.quantity %></span>
+                </td>
+                <td class="product__price">
+                  <span>GH₵<%= product.price %></span>
+                </td>
+                <td class="product__subtotal">
+                  <span>GH₵<%= (parseFloat(product.price) * product.cartItem.quantity).toFixed(2) %></span>
+                </td>
+              </tr>
+            <% }) %> 
+          </tbody>
+        </table>
+
+        <div class="cart-total">
+          <h4>
+            Total: 
+            <span class="amount">
+              GH₵
+              <%= 
+                (
+                  products
+                  .map(p => (parseFloat(p.price) * p.cartItem.quantity))
+                  .reduce((sum, current) => sum + current, 0) 
+                ).toFixed(2)
+              %> 
+            </span>
+          </h4>
+        </div>
+        <div class="cart-action">
+          <a href="/" class="btn btn-dark">Continue shopping</a>
+          <form action="/orders" method="POST">
+            <input type="submit" value="Order Now" class="btn btn-primary">
+          </form>
+        </div>
+      <% } else { %> 
+        <h1>Your Cart Is Empty</h1>
+      <% } %> 
+    </div>
+  </main>
+
+<%- include( '../includes/end') %> 

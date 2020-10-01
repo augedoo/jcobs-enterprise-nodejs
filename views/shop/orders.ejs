@@ -1,0 +1,43 @@
+  <%- include( '../includes/head') %> 
+</head>
+<body>
+  <%- include( '../includes/main-header') %> 
+  <main id="orders">
+    <div class="container">
+      
+      <% if (orders.length > 0) { %>
+        <h1 class="page-title">Your Orders</h1>
+        <div class="orders">
+        
+          <% orders.forEach((order, index) => { %> 
+            <div class="order">
+              <button type="button" class="collapsible">
+                <span>Order - # </span>
+                <%= order.id %>
+              </button>
+              <ul class="content">
+                <% order.products.forEach (product =>{ %> 
+                  <li>
+                    <div class="img">
+                      <img src="<%= product.imageUrl %>" alt="<%= product.title %>">
+                    </div>
+                    <h4><a href="/products/<%= product.id %>"><%= product.title %></a></h4>
+                    <p>Quantity: <%= product.orderItem.quantity %></p>
+                    <p>Amount: <%= (product.price * product.orderItem.quantity).toFixed(2) %></p>
+                  </li>
+                <% }); %> 
+              </ul>
+            </div>
+          <% }); %> 
+            
+        </div>
+      <% } else { %> 
+        <h1>Your have no orders yet.</h1>
+      <% } %>
+    </div>
+  </main>
+
+  <script src="https://kit.fontawesome.com/0fcb9d3bfe.js" crossorigin="anonymous"></script>
+  <script src="/js/main.js"></script>
+<%- include( '../includes/end') %> 
+

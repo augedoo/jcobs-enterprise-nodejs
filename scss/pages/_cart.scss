@@ -1,0 +1,143 @@
+#cart {
+  background: #f5f5f5;
+
+  .container {
+    padding: 3rem 4rem;
+  }
+
+  .lead {
+    span {
+      text-transform: capitalize;
+    }
+  }
+
+  table {
+    width: 100%;
+
+    thead {
+      color: lighten($color: $dark, $amount: 40);
+      font-weight: 300;
+
+      th {
+        padding: 0.5rem;
+        text-transform: uppercase;
+
+        &:first-child {
+          padding-left: 0;
+          text-align: start;
+        }
+      }
+    }
+
+    tr {
+      display: grid;
+      grid-template-columns: 1fr 0.2fr 0.35fr 0.35fr;
+    }
+
+    .product {
+      background: #fff;
+      text-align: center;
+      margin-bottom: 0.5rem;
+
+      &__info {
+        display: grid;
+        width: 100%;
+        grid-template-columns: 100px 1fr;
+        text-align: start;
+
+        h2 {
+          font-size: 0.9rem;
+          padding: 0.5rem;
+          margin-bottom: 0;
+          font-weight: 500;
+          text-transform: capitalize;
+        }
+
+        & > div:nth-of-type(2) {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+      }
+
+      &__image {
+        width: 100px !important;
+        margin-right: 0.25rem;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        background: #ccc;
+
+        img {
+          width: 100%;
+          // height: 100%;
+        }
+      }
+
+      &__action {
+        padding: 0 0.5rem 0.5rem;
+
+        button {
+          display: flex;
+          align-items: center;
+          color: $primary;
+          font-weight: 500;
+          text-transform: uppercase;
+          font-size: 0.75rem;
+          cursor: pointer;
+          border: none;
+          background: none;
+
+          svg {
+            width: 1.5rem;
+            fill: $primary;
+          }
+        }
+      }
+
+      &__quantity,
+      &__price,
+      &__subtotal {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-left: 1px solid $light;
+        font-weight: 500;
+
+        span {
+          display: inline-block;
+        }
+      }
+
+      &__subtotal {
+        color: $primary;
+      }
+    }
+  }
+
+  .cart {
+    &-total {
+      padding: 1rem;
+      display: flex;
+      // flex-grow: 1;
+
+      h4 {
+        margin-left: auto;
+      }
+
+      .amount {
+        color: $primary;
+        font-size: 1.4rem;
+      }
+    }
+
+    &-action {
+      display: flex;
+      justify-content: flex-end;
+
+      a {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+}

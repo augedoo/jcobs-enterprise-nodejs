@@ -1,0 +1,87 @@
+#orders {
+  background: #f5f5f5;
+
+  .container {
+    padding: 4rem;
+  }
+
+  .page-title {
+    margin-bottom: 2rem;
+  }
+
+  .order {
+    border: solid 1px lighten($color: $dark-lite, $amount: 40);
+    margin-bottom: 0.75rem;
+  }
+
+  .collapsible {
+    // color: #444;
+    cursor: pointer;
+    padding: 1.2rem;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    background: none;
+    border-top: solid 1px lighten($color: $dark-lite, $amount: 40);
+
+    &:first-of-type {
+      border-top: none;
+    }
+
+    &.active {
+      border-bottom: solid 1px lighten($color: $dark-lite, $amount: 40);
+      background-color: darken($color: #fff, $amount: 7);
+    }
+
+    &:hover {
+      background-color: darken($color: #fff, $amount: 7);
+    }
+  }
+
+  .content {
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+
+    li {
+      padding: 1rem 1.2rem;
+      border-bottom: solid 1px lighten($color: $dark-lite, $amount: 40);
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: auto 3fr 1fr 1.5fr;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      h4 {
+        text-transform: capitalize;
+        font-weight: 600;
+
+        a {
+        color: $primary;
+        }
+      }
+
+      .img {
+        width: 100px;
+      }
+    }
+  }
+
+  .collapsible:after {
+    content: 'Expand';
+    font-size: 13px;
+    float: right;
+    margin-left: 5px;
+    color: $primary;
+  }
+
+  .active:after {
+    content: 'Collapse';
+  }
+}

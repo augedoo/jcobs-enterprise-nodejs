@@ -1,0 +1,53 @@
+<%- include( '../includes/head') %> 
+  <!-- Todo: Imports -->
+</head>
+<body>
+  <%- include( '../includes/main-header') %> 
+
+  <main>
+    <div class="container"> 
+      
+      <form method="POST" action="<% if( !editMode ) { %>/admin/add-product<% } else { %>/admin/edit-product<% } %>">
+
+        <div class="form-field">
+          <label for="title">Title</label>
+          <input type="text" name="title" id="title" value="<%= editMode ? product.title : '' %>" required>
+        </div>
+        <div class="form-field">
+          <label for="price">Price</label>
+          <input type="text" name="price" id="price" value="<%= editMode ? product.price : '' %>" required>
+        </div>
+        <div class="form-field">
+          <label for="imageUrl">ImageUrl</label>
+          <input type="text" name="imageUrl" id="imageUrl" value="<%= editMode ? product.imageUrl : '' %>" required>
+        </div>
+        <div class="form-field">
+          <label for="category">Category</label>
+          <select id="category" name="category" required>
+            <!-- Todo: Fix select field autofill in update mode -->
+            <%# editMode ? product.category : '' %>
+            <option disabled>Select an option</option>
+            <option value="shoe">Shoe</option>
+            <option value="shirt">Shirt</option>
+            <option value="dress">Dress</option>
+            <option value="accessory">Accessory</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="description">Description</label>
+          <textarea name="description" id="description" required><%= editMode ? product.description : '' %></textarea>
+        </div>
+
+        <% if (editMode) { %>
+          <input type="hidden" name="productId" value="<%= product.id %> ">
+        <% } %> 
+
+        <div class="form-field">
+          <input type="submit" value="Submit">
+        </div>
+      </form>
+    </div>
+  </main>
+  
+<%- include( '../includes/end') %> 
+

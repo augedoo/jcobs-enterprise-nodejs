@@ -1,0 +1,44 @@
+<%- include( '../includes/head') %> 
+</head>
+<body>
+  <%- include( '../includes/main-header') %> 
+  <%# include( '../includes/categories-header') %> 
+
+  <main id="index-page">
+    <div class="container">
+      <% if (products.length > 0 ) { %> 
+        <h1 class="py-2 page-title" style="text-transform: capitalize">Your Products</h1> 
+        
+        <div class="content-wrapper">
+          <% for (product of products) { %> 
+            <div class="item">
+              <a href="/products/<%= product.id %>">
+                <div class="item__top">
+                  <div class="item__img">
+                    <img src="<%= product.imageUrl %>" alt="<%= product.title %>">
+                  </div>
+                  <div class="item__title text-show-lines-1"><%= product.title %></div>
+                  <div class="item__prc">GH₵ <%= product.price %></div>
+                </div>
+                
+                <div class="item__overlay">
+                  <form method="POST" action="/admin/delete-product">
+
+                    <a class="btn btn-dark" href="/admin/edit-product/<%= product.id %>?edit=true">Edit</a>
+
+                    <input type="hidden" name="productId" value="<%= product.id %>">
+                    <button type="submit" class="btn btn-primary">Delete</button>
+                  </form>
+                </div> 
+              </a>
+            </div>
+          <% } %> 
+        </div>
+      <% } else { %> 
+        <div>No product found</div>
+      <% } %> 
+    </div>
+
+  </main>
+<%- include( '../includes/end') %> 
+

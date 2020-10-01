@@ -1,0 +1,33 @@
+<%- include( '../includes/head') %> 
+  <!-- Todo: Imports -->
+</head>
+<body>
+  <%- include( '../includes/main-header') %> 
+
+  <main id="product-detail">
+    <div class="container">
+      
+      <div class="img">
+        <img src="<%= product.imageUrl %>" alt="<%= product.title %>">
+      </div>
+
+      <div class="product-info">
+        <div><span class="cat"><%= product.category %></span></div>
+        <h1 class="title"><%= product.title %></h1>
+        <h3>Price</h3>
+        <div><span class="prc">GH₵  <%= product.price %></span></div>
+        <h3>Description</h3>
+        <p class="desc"><%= product.description %></p>
+          <form action="/cart" method="POST" class="py-2">
+            <input type="hidden" name="productId" value="<%= product.id %> ">
+            <button class="btn btn-dark">Add to cart</button>
+          </form>
+        </div>
+
+      </div>
+      
+      
+    </div>
+  </main>
+
+<%- include( '../includes/end') %> 

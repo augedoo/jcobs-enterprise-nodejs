@@ -1,16 +1,8 @@
-// Typography
-@import url('../fonts/apercu/stylesheet.css');
-@import url('../fonts/helvetica-neue/stylesheet.css');
-@import url('https://fonts.googleapis.com/css?family=Gelasio:400,500,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 $font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
   Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-$font-secondary: Verdana, Geneva, Tahoma, sans-serif;
-$font-special: 'Limelight', cursive;
-
-// body {
-//   font-family: Verdana, Geneva, Tahoma, sans-serif;
-// }
+$font-secondary: 'Poppins', Verdana, Geneva, Tahoma, sans-serif;
 
 // Colors
 $primary: #218896;

@@ -8,8 +8,6 @@
 .current {
   color: $primary !important;
   fill: $primary !important;
-
-
 }
 
 .section-title {
@@ -43,6 +41,26 @@
   font-size: 2rem;
 }
 
+.text-show-lines {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+
+  &-1 {
+    @extend .text-show-lines;
+    -webkit-line-clamp: 1; /* number of lines to show */
+  }
+  &-2 {
+    @extend .text-show-lines;
+    -webkit-line-clamp: 2; /* number of lines to show */
+  }
+  &-3 {
+    @extend .text-show-lines;
+    -webkit-line-clamp: 3; /* number of lines to show */
+  }
+}
+
 .btn {
   padding: 0.5rem 1.5rem;
   font-size: 0.9rem;
@@ -54,7 +72,7 @@
   border: none;
   display: inline-block;
   transition: 0.2s;
-  transition-property:  none;
+  transition-property: none;
 
   &-block {
     width: 100%;
