@@ -6,6 +6,11 @@ E-commerce web application build process.
 
 ---
 
+### Todos:
+
+- Fix use feedback delays in auth views
+- Fix helmet middleware issues
+
 ### Signup
 
 - Take credentials and validate user input (use encrypted passwords).
