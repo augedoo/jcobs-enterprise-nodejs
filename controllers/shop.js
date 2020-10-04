@@ -29,7 +29,11 @@ exports.getProduct = async (req, res) => {
 
 exports.getCart = async (req, res) => {
   try {
-    const cart = await req.user.getCart();
+    // > Fetch user cart
+    let cart = await req.user.getCart();
+    if (!cart) {
+      cart = await req.user.createCart();
+    }
     const cartProducts = await cart.getProducts();
     const cartProductsCount = await cart.countProducts();
     console.log(cartProducts);
@@ -50,7 +54,10 @@ exports.postCart = async (req, res) => {
     // > Get product to be added to cart by id
     const product = await Product.findByPk(prodId);
     // > Fetch user cart
-    const cart = await req.user.getCart();
+    let cart = await req.user.getCart();
+    if (!cart) {
+      cart = await req.user.createCart();
+    }
     let newQuantity = 1;
     // > Add product to cart with new quantity
     const hasProductInCart = await cart.hasProduct(product);

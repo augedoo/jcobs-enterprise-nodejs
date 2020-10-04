@@ -100,6 +100,8 @@ a {
   display: inline-block;
   transition: 0.2s;
   transition-property: none; }
+  .btn-flat {
+    color: #218896; }
   .btn-block {
     width: 100%;
     display: block; }
@@ -154,17 +156,23 @@ a {
 .p-4 {
   padding: 4rem; }
 
+.my-0 {
+  margin: 0.5rem 0rem; }
+
 .my-1 {
-  padding: 1rem 0rem; }
+  margin: 1rem 0rem; }
 
 .my-2 {
-  padding: 2rem 0rem; }
+  margin: 2rem 0rem; }
 
 .my-3 {
-  padding: 3rem 0rem; }
+  margin: 3rem 0rem; }
 
 .my-4 {
-  padding: 4rem 0rem; }
+  margin: 4rem 0rem; }
+
+.m-0 {
+  padding: 0.5rem; }
 
 .m-1 {
   padding: 1rem; }
@@ -178,13 +186,55 @@ a {
 .m-4 {
   padding: 4rem; }
 
+.mx-auto {
+  margin: auto; }
+
+.flex {
+  display: flex;
+  align-items: center; }
+
+.ml-auto {
+  margin-left: auto; }
+
+.w-full {
+  width: 100%; }
+
+.w-25 {
+  width: 25%; }
+
+.w-40 {
+  width: 40%; }
+
+.w-50 {
+  width: 50%; }
+
+.w-75 {
+  width: 75%; }
+
+.form-group {
+  padding: 0.5rem 0; }
+
+.text-area {
+  min-height: 200px;
+  font-size: 1.2rem !important; }
+
+label {
+  display: block;
+  margin-bottom: 0.35rem; }
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem 2rem; }
+
 .input-field {
   border: solid 1px #218896;
   padding: 0.75rem 0.5rem;
   font-size: 0.85rem;
   font-weight: 400;
   transition: 0.5s;
-  border-radius: 3px; }
+  border-radius: 3px;
+  width: 100%; }
   .input-field:hover, .input-field:focus, .input-field:active {
     border: solid 1px #218896;
     outline: none; }
@@ -204,6 +254,27 @@ a {
 .bg-dark-lite {
   background: #6f7678;
   color: #ffffff; }
+
+.badge {
+  display: flex; }
+  .badge span {
+    padding: 0.5rem 2rem;
+    margin: auto;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: 600; }
+  .badge-warning {
+    background: #ffc7c7;
+    color: red; }
+  .badge-success {
+    background: #c6ffc6;
+    color: green; }
+  .badge-info {
+    background: #c7c7fa;
+    color: blue; }
+
+.error-field {
+  border-color: red; }
 
 #header-inner {
   background: #fff; }
@@ -246,7 +317,8 @@ a {
           color: #464646;
           font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
           font-weight: 600; }
-      #header-main #navbar .container .search-form button, #header-inner #navbar .container .search-form button {
+      #header-main #navbar .container .search-form a, #header-inner #navbar .container .search-form a {
+        display: inline-block;
         margin-left: 1rem;
         box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.09), -5px 5px rgba(0, 0, 0, 0.03); }
     #header-main #navbar .container ul.options, #header-inner #navbar .container ul.options {
@@ -307,14 +379,14 @@ a {
             justify-content: center;
             border-top: 1px solid #efefef;
             background: #f9f9f9; }
-            #header-main #navbar .container ul.options li:hover .logout a, #header-inner #navbar .container ul.options li:hover .logout a {
+            #header-main #navbar .container ul.options li:hover .logout .btn, #header-inner #navbar .container ul.options li:hover .logout .btn {
               color: #218896;
               text-transform: uppercase;
               padding: 0.5rem 0.75rem;
               border-radius: 5px;
               background: none;
               transition: background 0.35s; }
-              #header-main #navbar .container ul.options li:hover .logout a:hover, #header-inner #navbar .container ul.options li:hover .logout a:hover {
+              #header-main #navbar .container ul.options li:hover .logout .btn:hover, #header-inner #navbar .container ul.options li:hover .logout .btn:hover {
                 color: #218896;
                 background: rgba(33, 136, 150, 0.1); }
 
@@ -330,7 +402,23 @@ a {
     padding: 0.5rem 0; }
   #categories-header ul {
     display: flex;
-    align-items: center; }
+    align-items: center;
+    overflow-x: auto; }
+    #categories-header ul::-webkit-scrollbar {
+      width: 3px;
+      height: 5px;
+      /* Track */
+      /* Handle */
+      /* Handle on hover */ }
+      #categories-header ul::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px; }
+      #categories-header ul::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background: #b6b6b6; }
+      #categories-header ul::-webkit-scrollbar-thumb:hover {
+        border-radius: 10px;
+        background: #b8b8b8; }
     #categories-header ul li a {
       display: flex;
       align-items: center;
@@ -338,7 +426,8 @@ a {
       font-size: 0.9rem;
       font-weight: 600;
       color: #6f7678;
-      transition: color 0.35s; }
+      transition: color 0.35s;
+      white-space: nowrap; }
       #categories-header ul li a svg {
         width: 20px;
         max-height: 24px;

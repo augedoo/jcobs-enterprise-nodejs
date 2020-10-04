@@ -18,12 +18,12 @@
         <div><span class="prc">GH₵  <%= product.price %></span></div>
         <h3>Description</h3>
         <p class="desc"><%= product.description %></p>
-          <form action="/cart" method="POST" class="py-2">
-            <input type="hidden" name="productId" value="<%= product.id %> ">
-            <button class="btn btn-dark">Add to cart</button>
-          </form>
-        </div>
 
+        <div class="py-2">
+          <% if (isAuthenticated) { %> 
+            <%- include('../includes/add-to-cart') %>
+          <% } %> 
+        </div>
       </div>
       
       

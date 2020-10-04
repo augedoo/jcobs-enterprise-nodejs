@@ -74,6 +74,10 @@
   transition: 0.2s;
   transition-property: none;
 
+  &-flat {
+    color: $primary;
+  }
+
   &-block {
     width: 100%;
     display: block;
@@ -152,21 +156,28 @@
 }
 
 .my {
+  &-0 {
+    margin: 0.5rem 0rem;
+  }
   &-1 {
-    padding: 1rem 0rem;
+    margin: 1rem 0rem;
   }
   &-2 {
-    padding: 2rem 0rem;
+    margin: 2rem 0rem;
   }
   &-3 {
-    padding: 3rem 0rem;
+    margin: 3rem 0rem;
   }
   &-4 {
-    padding: 4rem 0rem;
+    margin: 4rem 0rem;
   }
 }
 
 .m {
+  &-0 {
+    padding: 0.5rem;
+  }
+
   &-1 {
     padding: 1rem;
   }
@@ -179,6 +190,61 @@
   &-4 {
     padding: 4rem;
   }
+
+  &x-auto {
+    margin: auto;
+  }
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+
+.w {
+  &-full {
+    width: 100%;
+  }
+
+  &-25 {
+    width: 25%;
+  }
+
+  &-40 {
+    width: 40%;
+  }
+
+  &-50 {
+    width: 50%;
+  }
+
+  &-75 {
+    width: 75%;
+  }
+}
+
+.form-group {
+  padding: 0.5rem 0;
+}
+
+.text-area {
+  min-height: 200px;
+  font-size: 1.2rem !important;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem 2rem;
 }
 
 .input-field {
@@ -188,6 +254,7 @@
   font-weight: 400;
   transition: 0.5s;
   border-radius: 3px;
+  width: 100%;
 
   &:hover,
   &:focus,
@@ -214,4 +281,34 @@
     background: $dark-lite;
     color: setTextColor($dark-lite);
   }
+}
+
+.badge {
+  display: flex;
+  span {
+    padding: 0.5rem 2rem;
+    margin: auto;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  &-warning {
+    background: #ffc7c7;
+    color: red;
+  }
+
+  &-success {
+    background: #c6ffc6;
+    color: green;
+  }
+
+  &-info {
+    background: #c7c7fa;
+    color: blue;
+  }
+}
+
+.error-field {
+  border-color: red;
 }

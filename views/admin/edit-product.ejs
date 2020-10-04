@@ -6,44 +6,101 @@
 
   <main>
     <div class="container"> 
-      
-      <form method="POST" action="<% if( !editMode ) { %>/admin/add-product<% } else { %>/admin/edit-product<% } %>">
 
-        <div class="form-field">
-          <label for="title">Title</label>
-          <input type="text" name="title" id="title" value="<%= editMode ? product.title : '' %>" required>
+      <% if (errorMessage) { %> 
+        <div class="m-1 badge">
+          <span class=" badge-warning"><%= errorMessage %> </span>
         </div>
-        <div class="form-field">
-          <label for="price">Price</label>
-          <input type="text" name="price" id="price" value="<%= editMode ? product.price : '' %>" required>
+      <% } %> 
+
+      <form method="POST" action="<% if( !editMode ) { %>/admin/add-product<% } else { %>/admin/edit-product<% } %>" class="mx-auto w-75 py-3">
+
+        <h1><% if( !editMode ) { %>Add Product<% } else { %>Edit Product<% } %></h1>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input 
+              type="text" 
+              class="input-field <%= errorFields.find(f => f.param === 'title') ? 'error-field' : '' %>"  
+              name="title" 
+              id="title" 
+              value="<%= editMode || hasError ? product.title : '' %>"   
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="price">Price</label>
+            <input 
+              type="text" 
+              class="input-field <%= errorFields.find(f => f.param === 'price') ? 'error-field' : '' %>" 
+              name="price" 
+              id="price" 
+              value="<%= editMode || hasError ? product.price : '' %>" 
+              required
+            >
+          </div>
         </div>
-        <div class="form-field">
-          <label for="imageUrl">ImageUrl</label>
-          <input type="text" name="imageUrl" id="imageUrl" value="<%= editMode ? product.imageUrl : '' %>" required>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="imageUrl">ImageUrl</label>
+            <input 
+              type="text" 
+              class="input-field <%= errorFields.find(f => f.param === 'imageUrl') ? 'error-field' : '' %>"
+              name="imageUrl" 
+              id="imageUrl" 
+              value="<%= editMode || hasError ? product.imageUrl : '' %>" 
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="category">Category</label>
+            <select 
+              id="category" 
+              name="category" 
+              class="input-field <%= errorFields.find(f => f.param === 'category') ? 'error-field' : '' %>" 
+              required
+            >
+              <!-- Todo: Fix select field autofill in update mode -->
+              <%# editMode ? product.category : '' %>
+              <option disabled>Select an category</option>
+              <option value="supermarket">Supermarket</option>
+              <option value="phones & tablet">Phones & Tablet</option>
+              <option value="health & beauty">Health & Beauty</option>
+              <option value="home & office">Home & Office</option>
+              <option value="electronics">Electronics</option>
+              <option value="computing">Computing</option>
+              <option value="fashion">Fashion</option>
+              <option value="sports goods">Sports Goods</option>
+              <option value="baby">Baby Products</option>
+              <option value="gaming">Gaming</option>
+              <option value="automobile">Automobile</option>
+              <option value="other categories">Other Categories</option>
+            </select>
+          </div>
         </div>
-        <div class="form-field">
-          <label for="category">Category</label>
-          <select id="category" name="category" required>
-            <!-- Todo: Fix select field autofill in update mode -->
-            <%# editMode ? product.category : '' %>
-            <option disabled>Select an option</option>
-            <option value="shoe">Shoe</option>
-            <option value="shirt">Shirt</option>
-            <option value="dress">Dress</option>
-            <option value="accessory">Accessory</option>
-          </select>
-        </div>
-        <div class="form-field">
+
+        <div class="form-group">
           <label for="description">Description</label>
-          <textarea name="description" id="description" required><%= editMode ? product.description : '' %></textarea>
+          <textarea 
+            name="description" 
+            id="description" 
+            class="input-field text-area <%= errorFields.find(f => f.param === 'title') ? 'error-field' : '' %>"
+            required
+          ><%= editMode ? product.description : '' %></textarea>
         </div>
+
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
 
         <% if (editMode) { %>
           <input type="hidden" name="productId" value="<%= product.id %> ">
         <% } %> 
 
-        <div class="form-field">
-          <input type="submit" value="Submit">
+        <div class="form-group">
+          <input type="submit" class="btn btn-dark btn-block" value="Submit">
         </div>
       </form>
     </div>

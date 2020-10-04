@@ -1,0 +1,55 @@
+<%- include( '../includes/head') %> 
+</head>
+<body>
+  <%- include( '../includes/main-header') %> 
+  <main>
+
+    <% if (errorMessage) { %> 
+      <div class="m-1 badge">
+        <span class=" badge-warning"><%= errorMessage %> </span>
+      </div>
+    <% } %> 
+  
+    <div class="container">
+      <form action="/auth/signup" method="POST" class="py-4 mx-auto w-50">
+        <h2 class="my-1">Signup</h2>
+        <div class="form-group">
+          <label for="email">E-Mail</label>
+          <br>
+          <input 
+            type="text" 
+            name="email" 
+            id="email" 
+            class="input-field" 
+            placeholder="Enter your email address...">
+        </div>
+        <div class="my-1 form-group">
+          <label for="password">Password</label>
+          <br>
+          <input 
+            type="password" 
+            name="password" 
+            id="password" 
+            class="input-field"
+            placeholder="Enter your password...">
+        </div>
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <br>
+          <input 
+            type="password" 
+            name="confirmPassword" 
+            id="confirmPassword" 
+            class="input-field"
+            placeholder="Re-enter your password...">
+        </div>
+        <div class="my-1 form-group">
+          <button type="submit" class="btn btn-primary">Signup</button>
+        </div>
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      </form>
+    </div>
+  </main>
+<%- include( '../includes/end') %> 
+
+

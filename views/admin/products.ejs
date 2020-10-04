@@ -7,7 +7,12 @@
   <main id="index-page">
     <div class="container">
       <% if (products.length > 0 ) { %> 
-        <h1 class="py-2 page-title" style="text-transform: capitalize">Your Products</h1> 
+        
+        <div class="flex py-1">
+          <h1 class="page-title" style="text-transform: capitalize">Your Products</h1> 
+          <a href="/admin/add-product" class="btn btn-dark ml-auto">Add Product</a>
+        </div>
+
         
         <div class="content-wrapper">
           <% for (product of products) { %> 
@@ -27,6 +32,7 @@
                     <a class="btn btn-dark" href="/admin/edit-product/<%= product.id %>?edit=true">Edit</a>
 
                     <input type="hidden" name="productId" value="<%= product.id %>">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                     <button type="submit" class="btn btn-primary">Delete</button>
                   </form>
                 </div> 

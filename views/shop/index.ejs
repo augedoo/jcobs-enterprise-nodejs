@@ -21,10 +21,9 @@
                 </div>
                 
                 <div class="item__overlay">
-                  <form method="POST" action="/cart">
-                    <input type="hidden" name="productId" value="<%= product.id %>">
-                    <button type="submit" class="btn btn-primary">Add To Cart</button>
-                  </form>
+                  <% if (isAuthenticated) { %> 
+                    <%- include('../includes/add-to-cart') %>
+                  <% } %> 
                 </div> 
               </a>
             </div>

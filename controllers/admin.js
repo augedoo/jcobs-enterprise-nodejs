@@ -1,10 +1,22 @@
+const { validationResult } = require('express-validator');
+
 const Product = require('../models/product');
 
 exports.getAddProduct = (req, res) => {
+  let message = req.flash('error');
+  if (message.length > 0) {
+    message = message[0];
+  } else {
+    message = null;
+  }
   res.render('admin/edit-product', {
     pageTitle: 'JCOBs Enterprise | Online Shop For Men and Women Clothing',
     path: '/',
     editMode: false,
+    hasError: false,
+    product: null,
+    errorMessage: message,
+    errorFields: [],
   });
 };
 
@@ -14,15 +26,38 @@ exports.postAddProduct = async (req, res) => {
     imageUrl = req.body.imageUrl,
     category = req.body.category,
     description = req.body.description;
-  const product = await req.user.createProduct({
-    title,
-    price,
-    imageUrl,
-    category,
-    description,
-  });
-  console.log('Added Product...');
-  res.redirect('/');
+  const errors = validationResult(req);
+  console.log(errors.array());
+  if (!errors.isEmpty()) {
+    return res.render('admin/edit-product', {
+      pageTitle: 'JCOBs Enterprise | Online Shop For Men and Women Clothing',
+      path: '/',
+      editMode: false,
+      errorMessage: errors.array()[0].msg,
+      hasError: true,
+      product: {
+        title,
+        price,
+        imageUrl,
+        category,
+        description,
+      },
+      errorFields: errors.array(),
+    });
+  }
+  try {
+    const product = await req.user.createProduct({
+      title,
+      price,
+      imageUrl,
+      category,
+      description,
+    });
+    console.log('Added Product...');
+    res.redirect('/');
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 exports.getProducts = async (req, res) => {
@@ -44,9 +79,6 @@ exports.postDeleteProduct = async (req, res) => {
     const result = await Product.destroy({
       where: { id: prodId, UserId: req.user.id },
     });
-    // const product = await req.user.getProducts({ where: { id: prodId } });
-    // const result = await req.user.removeProduct(product);
-    console.log(result);
     res.redirect('/admin/products');
   } catch (err) {
     console.log(err);
@@ -54,9 +86,15 @@ exports.postDeleteProduct = async (req, res) => {
 };
 
 exports.getEditProduct = async (req, res) => {
+  const prodId = req.params.productId;
+  const editMode = req.query.edit;
+  let message = req.flash('error');
+  if (message.length > 0) {
+    message = message[0];
+  } else {
+    message = null;
+  }
   try {
-    const prodId = req.params.productId;
-    const editMode = req.query.edit;
     const product = await Product.findByPk(prodId);
     if (editMode) {
       res.render('admin/edit-product', {
@@ -64,6 +102,9 @@ exports.getEditProduct = async (req, res) => {
         path: '/',
         editMode,
         product,
+        hasError: false,
+        errorMessage: message,
+        errorFields: [],
       });
     }
   } catch (err) {
@@ -72,18 +113,41 @@ exports.getEditProduct = async (req, res) => {
 };
 
 exports.postEditProduct = async (req, res) => {
-  try {
-    const prodId = req.body.productId;
+  const prodId = req.body.productId;
+  console.log('This is the product id'.red, prodId);
 
+  const errors = validationResult(req);
+  console.log(errors.array());
+  if (!errors.isEmpty()) {
+    return res.render('admin/edit-product', {
+      pageTitle: 'JCOBs Enterprise | Online Shop For Men and Women Clothing',
+      path: '/',
+      editMode: true,
+      errorMessage: errors.array()[0].msg,
+      hasError: true,
+      product: {
+        id: prodId,
+        title: req.body.title,
+        price: req.body.price,
+        imageUrl: req.body.imageUrl,
+        category: req.body.category,
+        description: req.body.description,
+      },
+      errorFields: errors.array(),
+    });
+  }
+  try {
     const product = await Product.findByPk(prodId);
+    if (product.userId !== req.user.id) {
+      return res.redirect('/admin/products');
+    }
     product.title = req.body.title;
     product.price = req.body.price;
     product.imageUrl = req.body.imageUrl;
     product.category = req.body.category;
     product.description = req.body.description;
-
-    const result = await product.save();
-    res.redirect('/admin/products');
+    await product.save();
+    return res.redirect('/admin/products');
   } catch (err) {
     console.log(err);
   }
