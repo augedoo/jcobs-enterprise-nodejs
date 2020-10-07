@@ -1,0 +1,44 @@
+#error-500-page {
+  .wrapper {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  .l-content {
+    width: 50%;
+
+    .img {
+      width: 60%;
+      margin: auto;
+    }
+
+    svg {
+      width: 100%;
+    }
+  }
+  .r-content {
+    width: 50%;
+    background: $medium;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 4rem;
+
+    h1 {
+      font-size: 4rem;
+      color: $primary;
+    }
+
+    h2 {
+      text-transform: none;
+      margin-bottom: 2rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 2rem;
+    }
+  }
+}

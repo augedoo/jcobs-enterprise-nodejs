@@ -6,7 +6,6 @@ const crypto = require('crypto');
 
 const User = require('../models/user');
 const colors = require('colors');
-const { findOne } = require('../../ecommerce_shop_app-nodejs/models/user');
 
 const mailer = nodemailer.createTransport(
   sendgridTransport({
@@ -76,7 +75,9 @@ exports.postSignup = async (req, res, next) => {
     res.redirect('/auth/login');
     await mailer.sendMail(message);
   } catch (err) {
-    console.log(colors.bgRed(err));
+    const error = new Error(err);
+    error.status(500);
+    throw error;
   }
 };
 
@@ -109,7 +110,9 @@ exports.postLogin = async (req, res, next) => {
     req.flash('error', 'Invalid E-Mail or Password.');
     res.redirect('/auth/login');
   } catch (err) {
-    console.log(err.red);
+    const error = new Error(err);
+    error.status(500);
+    throw error;
   }
 };
 
@@ -149,7 +152,6 @@ exports.postReset = (req, res, next) => {
       isSuccessMessage: false,
     });
   }
-  console.log('Reset mail sent ...'.bgGreen);
   try {
     crypto.randomBytes(32, async (err, buffer) => {
       if (err) {
@@ -182,7 +184,9 @@ exports.postReset = (req, res, next) => {
       await mailer.sendMail(message);
     });
   } catch (err) {
-    console.log(colors.bgRed(err));
+    const error = new Error(err);
+    error.status(500);
+    throw error;
   }
 };
 
@@ -241,6 +245,8 @@ exports.postChangePassword = async (req, res, next) => {
 
     return res.redirect('/auth/reset');
   } catch (err) {
-    console.log(colors.bgRed(err));
+    const error = new Error(err);
+    error.status(500);
+    throw error;
   }
 };

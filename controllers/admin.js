@@ -29,7 +29,7 @@ exports.postAddProduct = async (req, res) => {
   const errors = validationResult(req);
   console.log(errors.array());
   if (!errors.isEmpty()) {
-    return res.render('admin/edit-product', {
+    return res.status(422).render('admin/edit-product', {
       pageTitle: 'JCOBs Enterprise | Online Shop For Men and Women Clothing',
       path: '/',
       editMode: false,
@@ -56,7 +56,9 @@ exports.postAddProduct = async (req, res) => {
     console.log('Added Product...');
     res.redirect('/');
   } catch (err) {
-    console.log(err);
+    const error = new Error(err);
+    error.status(500);
+    throw error;
   }
 };
 
@@ -69,7 +71,9 @@ exports.getProducts = async (req, res) => {
       products,
     });
   } catch (err) {
-    console.log(err);
+    const error = new Error(err);
+    error.status(500);
+    throw error;
   }
 };
 
@@ -81,7 +85,9 @@ exports.postDeleteProduct = async (req, res) => {
     });
     res.redirect('/admin/products');
   } catch (err) {
-    console.log(err);
+    const error = new Error(err);
+    error.status(500);
+    throw error;
   }
 };
 
@@ -108,7 +114,9 @@ exports.getEditProduct = async (req, res) => {
       });
     }
   } catch (err) {
-    console.log(err);
+    const error = new Error(err);
+    error.status(500);
+    throw error;
   }
 };
 
@@ -119,7 +127,7 @@ exports.postEditProduct = async (req, res) => {
   const errors = validationResult(req);
   console.log(errors.array());
   if (!errors.isEmpty()) {
-    return res.render('admin/edit-product', {
+    return res.status(422).render('admin/edit-product', {
       pageTitle: 'JCOBs Enterprise | Online Shop For Men and Women Clothing',
       path: '/',
       editMode: true,
@@ -149,6 +157,8 @@ exports.postEditProduct = async (req, res) => {
     await product.save();
     return res.redirect('/admin/products');
   } catch (err) {
-    console.log(err);
+    const error = new Error(err);
+    error.status(500);
+    throw error;
   }
 };

@@ -34,7 +34,7 @@ colors.enable();
 app.use(morgan('dev'));
 app.use(cors());
 // app.use(helmet());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(
   session({
@@ -55,7 +55,9 @@ app.use(async (req, res, next) => {
       req.user = await User.findOne({ where: { id: req.session.user.id } });
     }
   } catch (err) {
-    console.log(err);
+    const error = new Error(err);
+    error.status(500);
+    throw error;
   }
   next();
 });
@@ -70,7 +72,17 @@ app.use((req, res, next) => {
 app.use('/', shopRoutes);
 app.use('/admin', adminRoutes);
 app.use('/auth', authRoutes);
+app.use('/500', errorController.get500);
 app.use(errorController.get404);
+
+app.use((error, req, res, next) => {
+  console.log(req.session.isLoggedIn);
+  console.log(error);
+  res.status(500).render('500', {
+    pageTitle: 'Internal Server Error',
+    path: '/500',
+  });
+});
 
 User.hasMany(Product, { constraints: true, onDelete: 'CASCADE' });
 Product.belongsTo(User);
@@ -86,7 +98,6 @@ Order.belongsToMany(Product, { through: OrderItem });
 const PORT = process.env.PORT || 5000;
 
 sequelize
-  // .sync({ alter: true })
   // .sync({ force: true })
   .sync()
   .then((result) => {

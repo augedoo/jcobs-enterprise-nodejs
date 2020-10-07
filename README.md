@@ -2,14 +2,22 @@
 
 E-commerce web application build process.
 
-## Authentication
-
----
-
 ### Todos:
 
 - Fix use feedback delays in auth views
 - Fix helmet middleware issues
+
+## Authentication
+
+---
+
+### Login
+
+- Take user login credentials.
+- Validate credentials:
+  - check email
+  - check password
+- Give user a session.
 
 ### Signup
 
@@ -30,7 +38,46 @@ E-commerce web application build process.
 - Send emails to verify signup
   - nodemailer
   - nodemailer-sendgrid-transport
-- Reset password
-  - add resetToken (generate token with crypto)
-  - add resetTokenExpiration
 - Authorization
+
+### Reset password
+
+- add resetToken (generate token with crypto)
+- add resetTokenExpiration
+
+## Handle Errors
+
+---
+
+- Implement error handling middlewares
+  - Fix 404
+  - Fix 500
+- Provide user feedbacks where neccessary
+
+## File Upload and Download
+
+---
+
+- Upload product image
+- Delete product image from server when product is deleted
+- Generate order invoices on the fly for user reference
+
+## Implement Pagination
+
+---
+
+- Apply this feature where necessary.
+
+## Add Async Requests
+
+---
+
+- Apply this feature where necessary.
+  - E.g. Deleting a product doesn't need to reload the page.
+
+## Add Payment
+
+---
+
+- Add checkout flow.
+- Add third party payment service provider.

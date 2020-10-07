@@ -2,7 +2,7 @@
   "name": "jcobs-enterprise-nodejs",
   "version": "1.0.0",
   "description": "E-Commerce shop application",
-  "main": "server.js",
+  "main": "app.js",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
@@ -29,8 +29,8 @@
     "sequelize-cli": "^6.2.0"
   },
   "scripts": {
-    "start": "node server.js",
-    "dev": "concurrently \"nodemon server.js\" \"npm run sass\"",
+    "start": "node app.js",
+    "dev": "concurrently \"nodemon app.js\" \"npm run sass\"",
     "sass": "node-sass-chokidar ./scss/index.scss -o ./public/css/ --watch --recursive --use-polling --polling-interval 1000"
   },
   "repository": {

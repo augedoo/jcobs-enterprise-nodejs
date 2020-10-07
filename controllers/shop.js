@@ -9,7 +9,9 @@ exports.getIndex = async (req, res) => {
       products,
     });
   } catch (err) {
-    console.log(err);
+    const error = new Error(err);
+    error.status(500);
+    throw error;
   }
 };
 
@@ -23,7 +25,9 @@ exports.getProduct = async (req, res) => {
       product,
     });
   } catch (err) {
-    console.log(err);
+    const error = new Error(err);
+    error.status(500);
+    throw error;
   }
 };
 
@@ -44,7 +48,9 @@ exports.getCart = async (req, res) => {
       products: cartProducts,
     });
   } catch (err) {
-    console.log(err);
+    const error = new Error(err);
+    error.status(500);
+    throw error;
   }
 };
 
@@ -77,7 +83,9 @@ exports.postCart = async (req, res) => {
     }
     res.redirect('/');
   } catch (err) {
-    console.log(err);
+    const error = new Error(err);
+    error.status(500);
+    throw error;
   }
 };
 
@@ -90,7 +98,9 @@ exports.postDeleteCartItem = async (req, res) => {
     const result = await cart.removeProduct(product);
     res.redirect('/cart');
   } catch (err) {
-    console.log(err);
+    const error = new Error(err);
+    error.status(500);
+    throw error;
   }
 };
 
@@ -116,7 +126,9 @@ exports.postOrder = async (req, res) => {
     await cart.setProducts([]);
     res.redirect('/orders');
   } catch (err) {
-    console.log(err);
+    const error = new Error(err);
+    error.status(500);
+    throw error;
   }
 };
 
@@ -135,7 +147,9 @@ exports.getOrders = async (req, res) => {
       orders,
     });
   } catch (err) {
-    console.log(err);
+    const error = new Error(err);
+    error.status(500);
+    throw error;
   }
 };
 
@@ -150,6 +164,8 @@ exports.getCheckout = async (req, res) => {
     // Todo: checkout implementation
     console.log('Continue working on checkout');
   } catch (err) {
-    console.log(err);
+    const error = new Error(err);
+    error.status(500);
+    throw error;
   }
 };

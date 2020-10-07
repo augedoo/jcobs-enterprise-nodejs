@@ -665,3 +665,34 @@ label {
     color: #218896; }
   #orders .active:after {
     content: 'Collapse'; }
+
+#error-500-page .wrapper {
+  display: flex;
+  min-height: 100vh; }
+
+#error-500-page .l-content {
+  width: 50%; }
+  #error-500-page .l-content .img {
+    width: 60%;
+    margin: auto; }
+  #error-500-page .l-content svg {
+    width: 100%; }
+
+#error-500-page .r-content {
+  width: 50%;
+  background: #edece9;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 4rem; }
+  #error-500-page .r-content h1 {
+    font-size: 4rem;
+    color: #218896; }
+  #error-500-page .r-content h2 {
+    text-transform: none;
+    margin-bottom: 2rem; }
+  #error-500-page .r-content p {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 2rem; }
