@@ -9,11 +9,11 @@
 
       <% if (errorMessage) { %> 
         <div class="m-1 badge">
-          <span class=" badge-warning"><%= errorMessage %> </span>
+          <span class="badge-warning"><%= errorMessage %></span>
         </div>
       <% } %> 
 
-      <form method="POST" action="<% if( !editMode ) { %>/admin/add-product<% } else { %>/admin/edit-product<% } %>" class="mx-auto w-75 py-3">
+      <form class="mx-auto w-75 py-3" method="POST" action="<% if( !editMode ) { %>/admin/add-product<% } else { %>/admin/edit-product<% } %>" enctype="multipart/form-data">
 
         <h1><% if( !editMode ) { %>Add Product<% } else { %>Edit Product<% } %></h1>
 
@@ -45,14 +45,12 @@
 
         <div class="form-row">
           <div class="form-group">
-            <label for="imageUrl">ImageUrl</label>
+            <label for="imageUrl">Image</label>
             <input 
-              type="text" 
-              class="input-field <%= errorFields.find(f => f.param === 'imageUrl') ? 'error-field' : '' %>"
-              name="imageUrl" 
-              id="imageUrl" 
-              value="<%= editMode || hasError ? product.imageUrl : '' %>" 
-              required
+              type="file" 
+              class="input-field"
+              name="image" 
+              id="image"
             >
           </div>
 

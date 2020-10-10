@@ -1,4 +1,10 @@
+const fs = require('fs');
+const path = require('path');
+const pdfDocument = require('pdfkit');
+const colors = require('colors');
+
 const Product = require('../models/product');
+const pdf = require('../utils/pdf');
 
 exports.getIndex = async (req, res) => {
   try {
@@ -146,6 +152,59 @@ exports.getOrders = async (req, res) => {
       path: '/orders',
       orders,
     });
+  } catch (err) {
+    const error = new Error(err);
+    error.status(500);
+    throw error;
+  }
+};
+
+exports.getInvoice = async (req, res, next) => {
+  const invoiceId = req.params.orderId;
+  const invoicePath = path.join(path.dirname(__dirname), 'data', 'invoices');
+  console.log(invoicePath);
+  const order = await req.user.getOrders({
+    where: { id: invoiceId },
+    include: ['products'],
+  });
+
+  const products = order[0].products.map((p) => {
+    const product = {
+      title: p.title,
+      price: p.price,
+      quantity: p.orderItem.quantity,
+    };
+    return product;
+  });
+
+  const pdfDoc = new pdfDocument({
+    info: {
+      title: 'JCobs Enterprise Invoice',
+      author: 'JCobs Enterprise',
+    },
+    permissions: {
+      printing: 'highResolution',
+    },
+    pdfVersion: '1.6',
+    layout: 'portrait',
+    size: [595.28, 841.89],
+    margins: {
+      top: 72,
+      bottom: 72,
+      left: 47.64,
+      right: 47.64,
+    },
+  });
+  res.setHeader('Content-Type', 'application/pdf');
+  res.setHeader(
+    'Content-Disposition',
+    'inline; filename="order-' + invoiceId + '.pdf"'
+  );
+
+  try {
+    pdfDoc.pipe(res);
+    pdfDoc.pipe(fs.createWriteStream(invoicePath));
+    pdf.generateOrderInvoicePdf(pdfDoc, products, order.createdAt);
   } catch (err) {
     const error = new Error(err);
     error.status(500);

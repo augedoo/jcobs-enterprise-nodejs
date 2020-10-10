@@ -6,6 +6,7 @@ E-commerce web application build process.
 
 - Fix use feedback delays in auth views
 - Fix helmet middleware issues
+- Fix paging in invoice data.
 
 ## Authentication
 

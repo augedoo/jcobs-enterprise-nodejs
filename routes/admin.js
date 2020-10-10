@@ -17,7 +17,6 @@ router.post(
       .isAscii()
       .isLength({ min: 3 })
       .trim(),
-    check('imageUrl').isURL().withMessage('Please enter a valid URL.'),
     check('price').isFloat().withMessage('Please enter a decimal number.'),
     check(
       'description',
@@ -44,7 +43,6 @@ router.post(
       .isAscii()
       .isLength({ min: 3 })
       .trim(),
-    check('imageUrl').isURL().withMessage('Please enter a valid URL.'),
     check('price').isFloat().withMessage('Please enter a decimal number.'),
     check(
       'description',

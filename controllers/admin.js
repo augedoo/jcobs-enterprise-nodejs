@@ -1,6 +1,7 @@
 const { validationResult } = require('express-validator');
 
 const Product = require('../models/product');
+const fileHelper = require('../utils/file');
 
 exports.getAddProduct = (req, res) => {
   let message = req.flash('error');
@@ -10,7 +11,7 @@ exports.getAddProduct = (req, res) => {
     message = null;
   }
   res.render('admin/edit-product', {
-    pageTitle: 'JCOBs Enterprise | Online Shop For Men and Women Clothing',
+    pageTitle: 'JCOBs Enterprise | Add Product',
     path: '/',
     editMode: false,
     hasError: false,
@@ -23,14 +24,15 @@ exports.getAddProduct = (req, res) => {
 exports.postAddProduct = async (req, res) => {
   const title = req.body.title,
     price = req.body.price,
-    imageUrl = req.body.imageUrl,
+    image = req.file,
     category = req.body.category,
     description = req.body.description;
+
   const errors = validationResult(req);
   console.log(errors.array());
   if (!errors.isEmpty()) {
     return res.status(422).render('admin/edit-product', {
-      pageTitle: 'JCOBs Enterprise | Online Shop For Men and Women Clothing',
+      pageTitle: 'JCOBs Enterprise | Add Product',
       path: '/',
       editMode: false,
       errorMessage: errors.array()[0].msg,
@@ -38,13 +40,17 @@ exports.postAddProduct = async (req, res) => {
       product: {
         title,
         price,
-        imageUrl,
         category,
         description,
       },
       errorFields: errors.array(),
     });
   }
+  if (!image) {
+    req.flash('error', 'Please upload an image file.');
+    return res.redirect('/admin/add-product');
+  }
+  const imageUrl = '/' + image.path.replace('\\', '/');
   try {
     const product = await req.user.createProduct({
       title,
@@ -122,7 +128,7 @@ exports.getEditProduct = async (req, res) => {
 
 exports.postEditProduct = async (req, res) => {
   const prodId = req.body.productId;
-  console.log('This is the product id'.red, prodId);
+  const image = req.file;
 
   const errors = validationResult(req);
   console.log(errors.array());
@@ -149,9 +155,12 @@ exports.postEditProduct = async (req, res) => {
     if (product.userId !== req.user.id) {
       return res.redirect('/admin/products');
     }
+    if (image) {
+      fileHelper.delete(product.imageUrl.slice(1));
+      product.imageUrl = '/' + image.path.replace('\\', '/');
+    }
     product.title = req.body.title;
     product.price = req.body.price;
-    product.imageUrl = req.body.imageUrl;
     product.category = req.body.category;
     product.description = req.body.description;
     await product.save();

@@ -6,15 +6,19 @@
     <div class="container">
       
       <% if (orders.length > 0) { %>
-        <h1 class="page-title">Your Orders</h1>
+        <div class="heading">
+          <h1 class="page-title">Your Orders</h1>
+          <p><strong>Note:</strong> Click on an order to expand for details.</p>
+        </div>
         <div class="orders">
         
           <% orders.forEach((order, index) => { %> 
             <div class="order">
               <button type="button" class="collapsible">
-                <span>Order - # </span>
-                <%= order.id %>
+                <span>Order - # <%= order.id %></span>
+                  <a class="invoice-btn" target="_blank" href="/order-invoice/<%= order.id %>">Invoice</a>
               </button>
+
               <ul class="content">
                 <% order.products.forEach (product =>{ %> 
                   <li>

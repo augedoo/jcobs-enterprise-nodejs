@@ -614,8 +614,16 @@ label {
   background: #f5f5f5; }
   #orders .container {
     padding: 4rem; }
-  #orders .page-title {
+  #orders .heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
     margin-bottom: 2rem; }
+    #orders .heading .page-title {
+      margin-bottom: 0; }
+    #orders .heading strong {
+      color: #218896; }
   #orders .order {
     border: solid 1px #d8dadb;
     margin-bottom: 0.75rem; }
@@ -628,8 +636,11 @@ label {
     outline: none;
     font-size: 1.1rem;
     font-weight: 500;
-    background: none;
-    border-top: solid 1px #d8dadb; }
+    border-top: solid 1px #d8dadb;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between; }
     #orders .collapsible:first-of-type {
       border-top: none; }
     #orders .collapsible.active {
@@ -637,6 +648,9 @@ label {
       background-color: #ededed; }
     #orders .collapsible:hover {
       background-color: #ededed; }
+    #orders .collapsible .invoice-btn {
+      color: #218896;
+      margin-left: auto; }
   #orders .content {
     padding: 0;
     max-height: 0;
@@ -658,13 +672,13 @@ label {
       #orders .content li .img {
         width: 100px; }
   #orders .collapsible:after {
-    content: 'Expand';
+    content: '';
     font-size: 13px;
     float: right;
     margin-left: 5px;
     color: #218896; }
   #orders .active:after {
-    content: 'Collapse'; }
+    content: ''; }
 
 #error-500-page .wrapper {
   display: flex;

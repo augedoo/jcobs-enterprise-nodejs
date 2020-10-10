@@ -29,4 +29,7 @@ router.get('/orders', isAuth, shopController.getOrders);
 // GET => /orders => Public
 router.post('/orders', isAuth, shopController.postOrder);
 
+// GET => /orders => Public
+router.get('/order-invoice/:orderId', isAuth, shopController.getInvoice);
+
 module.exports = router;

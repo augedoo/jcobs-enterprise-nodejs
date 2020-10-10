@@ -5,8 +5,20 @@
     padding: 4rem;
   }
 
-  .page-title {
+  .heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
     margin-bottom: 2rem;
+
+    .page-title {
+      margin-bottom: 0;
+    }
+
+    strong {
+      color: $primary;
+    }
   }
 
   .order {
@@ -24,8 +36,11 @@
     outline: none;
     font-size: 1.1rem;
     font-weight: 500;
-    background: none;
     border-top: solid 1px lighten($color: $dark-lite, $amount: 40);
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
 
     &:first-of-type {
       border-top: none;
@@ -38,6 +53,11 @@
 
     &:hover {
       background-color: darken($color: #fff, $amount: 7);
+    }
+
+    .invoice-btn {
+      color: $primary;
+      margin-left: auto;
     }
   }
 
@@ -63,7 +83,7 @@
         font-weight: 600;
 
         a {
-        color: $primary;
+          color: $primary;
         }
       }
 
@@ -74,7 +94,8 @@
   }
 
   .collapsible:after {
-    content: 'Expand';
+    // content: 'Expand';
+    content: '';
     font-size: 13px;
     float: right;
     margin-left: 5px;
@@ -82,6 +103,7 @@
   }
 
   .active:after {
-    content: 'Collapse';
+    // content: 'Collapse';
+    content: '';
   }
 }

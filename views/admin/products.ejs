@@ -41,7 +41,10 @@
           <% } %> 
         </div>
       <% } else { %> 
-        <div>No product found</div>
+        <div class="flex py-1">
+          <h3 class="page-title" style="text-transform: none">You don't have any product yet.</h3> 
+          <a href="/admin/add-product" class="btn btn-dark ml-auto">Add Product</a>
+        </div>
       <% } %> 
     </div>
 
